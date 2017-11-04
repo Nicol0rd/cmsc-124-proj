@@ -24,6 +24,7 @@
 //	--------------------------------------------------	[JAVA IMPORTS]
 	import gui.*;
 	import java.awt.*;
+	import java.awt.event.*;
 	import javax.swing.*;
 
 //  --------------------------------------------------  [CLASS SPECIFICATION]
@@ -41,10 +42,20 @@ public class MyFrame extends JFrame {
 	*************************/
 	public MyFrame(){
 
-		super("Ang Ganda ni Maam Kat LOLTERPRETER");										//	[title for window]
+		super("Ang Ganda ni Maam Kat LOLTERPRETER");										//	[title for window]	
 		this.setPreferredSize(new Dimension(MAXIMUM_WINDOW_WIDTH,MAXIMUM_WINDOW_HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+
+		JFrame frame = this;
+
+		frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                titleAlign(frame);
+            }
+
+        });
 
 		Container container = this.getContentPane();
 		container.add(new MainPanel(),BorderLayout.CENTER);
@@ -54,6 +65,25 @@ public class MyFrame extends JFrame {
 		this.setVisible(true);
 	}
 
+	/************
+	*  Methods  *
+	************/
+	private void titleAlign(JFrame frame) {
+
+        Font font = frame.getFont();
+
+        String currentTitle = frame.getTitle().trim();
+        FontMetrics fm = frame.getFontMetrics(font);
+        int frameWidth = frame.getWidth();
+        int titleWidth = fm.stringWidth(currentTitle);
+        int spaceWidth = fm.stringWidth(" ");
+        int centerPos = (frameWidth / 2) - (titleWidth / 2);
+        int spaceCount = centerPos / spaceWidth;
+        String pad = "";
+        pad = String.format("%" + (spaceCount - 14) + "s", pad);
+        frame.setTitle(pad + currentTitle);
+
+    }
 
 	/************
 	*  Getters  *

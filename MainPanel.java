@@ -22,6 +22,7 @@
 
 //	--------------------------------------------------	[JAVA IMPORTS]	
 	import java.awt.BorderLayout;
+	import java.awt.Color;
 	import java.awt.Dimension;
 	import javax.swing.JPanel;
 	import gui.*;
@@ -79,6 +80,10 @@ public class MainPanel extends JPanel {
 		// set panel size - horizontal		
 		this.leftPanel.setPreferredSize(new Dimension(Editor.getPanelWidth(), Editor.getPanelHeight()));
 		this.rightPanel.setPreferredSize(new Dimension(Interpreter.getPanelWidth(), Interpreter.getPanelHeight()));
+		
+		this.leftPanel.setBackground(Color.GRAY); 
+		this.rightPanel.setBackground(Color.GRAY);
+		this.bottomPanel.setBackground(Color.GRAY);
 
 		// set component position - top
 		this.leftPanel.add(editor);

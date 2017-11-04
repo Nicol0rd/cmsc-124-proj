@@ -25,6 +25,9 @@
 	import java.awt.BorderLayout;
 	import java.awt.Color;	
 	import java.awt.Dimension;
+	import java.awt.Font;
+	import javax.swing.border.EmptyBorder;
+	import javax.swing.JLabel;
 	import javax.swing.JPanel;
 	import gui.*;
 
@@ -42,7 +45,7 @@ public class Interpreter extends JPanel {
 	***************/
 	
 	// Main Panels
-		private JPanel titlebar;
+		private JLabel titlebar;
 		private LexemeTable lexeme;
 		private SymbolTable symboltable;
 
@@ -71,16 +74,23 @@ public class Interpreter extends JPanel {
 		this.bottomPanel.setLayout(new BorderLayout());
 		this.topPanel.setLayout(new BorderLayout());
 
-		this.titlebar = new JPanel();
+		this.titlebar = new JLabel("LOL CODE Interpreter");
 		this.lexeme = new LexemeTable();
 		this.symboltable = new SymbolTable();
 		
-		this.titlebar.setBackground(Color.BLACK);
-		this.titlebar.setPreferredSize(new Dimension(Interpreter.MAXIMUM_PANEL_WIDTH, Interpreter.MAXIMUM_PANEL_HEIGHT-250));
+		// interpreter title bar - setup		
+		this.titlebar.setPreferredSize(new Dimension(Interpreter.MAXIMUM_PANEL_WIDTH, Interpreter.MAXIMUM_PANEL_HEIGHT-280));
+		this.titlebar.setForeground(Color.WHITE);
+		this.titlebar.setFont(new Font("Serif", Font.BOLD, 12));
+		this.titlebar.setBorder(new EmptyBorder(0, 15, 10, 0));
+
+		JPanel titlePanel = new JPanel(); titlePanel.setBackground(Color.BLACK);
+		titlePanel.setPreferredSize(new Dimension(Interpreter.MAXIMUM_PANEL_WIDTH, Interpreter.MAXIMUM_PANEL_HEIGHT-280));
+		titlePanel.add(this.titlebar);		
 
 		this.bottomPanel.add(lexeme, BorderLayout.WEST);
 		this.bottomPanel.add(symboltable, BorderLayout.EAST);
-		this.topPanel.add(titlebar, BorderLayout.CENTER);
+		this.topPanel.add(titlePanel, BorderLayout.CENTER);
 
 		this.add(topPanel, BorderLayout.NORTH);
 		this.add(bottomPanel, BorderLayout.SOUTH);

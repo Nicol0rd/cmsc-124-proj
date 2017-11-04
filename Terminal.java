@@ -60,16 +60,24 @@ public class Terminal extends JPanel {
 	****************/
 	private void setComponents() {
 		
+		this.setBackground(Color.GRAY);
 		this.setPreferredSize(new Dimension(Terminal.MAXIMUM_PANEL_WIDTH, Terminal.MAXIMUM_PANEL_HEIGHT));
 		
 		this.executeButton = new JButton("EXECUTE");
-		this.executeButton.setPreferredSize(new Dimension(Terminal.MAXIMUM_PANEL_WIDTH,Terminal.MAXIMUM_PANEL_HEIGHT-275));
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BorderLayout());
+		buttonPanel.setBackground(Color.GRAY);
 
 		this.textPanel = new JPanel();
-		this.textPanel.setBackground(Color.GREEN);		
-		this.textPanel.setPreferredSize(new Dimension(Terminal.MAXIMUM_PANEL_WIDTH, Terminal.MAXIMUM_PANEL_HEIGHT-30));
+		this.textPanel.setBackground(Color.WHITE);
 
-		this.add(this.executeButton, BorderLayout.NORTH);
+		this.executeButton.setPreferredSize(new Dimension(Terminal.getPanelWidth(),Terminal.getPanelHeight()-280));
+		buttonPanel.setPreferredSize(new Dimension(Terminal.getPanelWidth(),Terminal.getPanelHeight()-280));
+		this.textPanel.setPreferredSize(new Dimension(Terminal.getPanelWidth(),Terminal.getPanelHeight()-25));
+		
+		buttonPanel.add(this.executeButton, BorderLayout.CENTER);
+		this.add(buttonPanel, BorderLayout.NORTH);
 		this.add(this.textPanel, BorderLayout.SOUTH);
 	}
 
