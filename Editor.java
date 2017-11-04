@@ -22,9 +22,11 @@
 	package gui;
 
 //	--------------------------------------------------	[JAVA IMPORTS]	
+	import java.awt.BorderLayout;	
 	import java.awt.Color;	
 	import java.awt.Dimension;
-	import javax.swing.JPanel;
+	import javax.swing.*;
+	import javax.swing.border.*;
 	import gui.*;
 
 //	--------------------------------------------------	[CLASS SPECIFICATION]
@@ -39,15 +41,48 @@ public class Editor extends JPanel {
 	/***************
 	*  Attributes  *
 	***************/
+	private JPanel topPanel;
+	private JPanel bottomPanel;
+	private JTextArea textArea;
+	private JTextField textField;
+	private JScrollPane textScroll;
 
 	/***************************
 	*    Panel Constructors    *
 	***************************/
 	public Editor() {
-		super();
-		this.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT));
-		this.setBackground(Color.RED);
+		this.setComponents();
 	}
+
+	/****************
+	*    Methods    *
+	****************/
+	private void setComponents() {
+		this.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT));
+		this.setBackground(Color.GRAY);
+		this.setLayout(new BorderLayout());
+
+		this.topPanel = new JPanel();
+		this.bottomPanel = new JPanel();
+				
+		this.textArea = new JTextArea();
+        this.textArea.setEditable(true);
+		this.textArea.setLineWrap(true);
+        this.textScroll = new JScrollPane(this.textArea);
+        this.textScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+		this.textArea.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH-30, Editor.MAXIMUM_PANEL_HEIGHT-30));
+		this.topPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-280));
+		this.bottomPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-20));
+			
+		this.topPanel.setBackground(Color.ORANGE);
+		this.bottomPanel.setBackground(Color.GRAY);
+		
+		this.bottomPanel.add(this.textScroll);
+
+		this.add(topPanel, BorderLayout.NORTH);
+		this.add(bottomPanel, BorderLayout.SOUTH);
+	}	
 
 	/****************
 	*    Getters    *
