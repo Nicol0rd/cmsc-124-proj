@@ -30,15 +30,14 @@ public class Parser {
 		String s = str.trim();
 		lexemes.clear();
 		while(!s.equals("")){ //habang di pa siya nag eend
-			for(Token i : tokens){
-				Matcher m = i.regex.matcher(s);
+			for(int i = 0; i < tokens.size(); i++){
+				Matcher m = tokens.get(i).regex.matcher(s);
 				if(m.find()){
 					String asd = m.group().trim();
-          			s = m.replaceFirst("").trim();
-					lexemes.add(new Lexeme(asd, i.type));
+					s = m.replaceFirst("").trim();
+					lexemes.add(new Lexeme(asd, tokens.get(i).type));
 					break;
 				}
-
 			}
 		}
 	}
