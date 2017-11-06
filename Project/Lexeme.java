@@ -1,4 +1,5 @@
 package src;
+
 public class Lexeme{
 	private String regex;
 	private String lextype;
