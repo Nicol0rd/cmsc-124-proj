@@ -86,7 +86,7 @@ public class Interpreter extends JPanel {
 
 		JPanel titlePanel = new JPanel(); titlePanel.setBackground(Color.BLACK);
 		titlePanel.setPreferredSize(new Dimension(Interpreter.MAXIMUM_PANEL_WIDTH, Interpreter.MAXIMUM_PANEL_HEIGHT-280));
-		titlePanel.add(this.titlebar);		
+		titlePanel.add(this.titlebar);	
 
 		this.bottomPanel.add(lexeme, BorderLayout.WEST);
 		this.bottomPanel.add(symboltable, BorderLayout.EAST);

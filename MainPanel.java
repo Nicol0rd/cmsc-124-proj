@@ -86,19 +86,19 @@ public class MainPanel extends JPanel {
 		this.bottomPanel.setBackground(Color.GRAY);
 
 		// set component position - top
-		this.leftPanel.add(editor);
-		this.rightPanel.add(interpreter);
+		this.leftPanel.add(this.editor);
+		this.rightPanel.add(this.interpreter);
 
 		// set component position - top
-		this.topPanel.add(leftPanel, BorderLayout.WEST);
-		this.topPanel.add(rightPanel, BorderLayout.EAST);
+		this.topPanel.add(this.leftPanel, BorderLayout.WEST);
+		this.topPanel.add(this.rightPanel, BorderLayout.EAST);
 
 		// set component position - bottom
-		this.bottomPanel.add(terminal);
+		this.bottomPanel.add(this.terminal);
 
 		// set component position - window
-		this.add(topPanel,BorderLayout.NORTH);
-		this.add(bottomPanel,BorderLayout.SOUTH);
+		this.add(this.topPanel,BorderLayout.NORTH);
+		this.add(this.bottomPanel,BorderLayout.SOUTH);
 
 	}
 

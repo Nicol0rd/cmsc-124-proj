@@ -64,24 +64,25 @@ public class Editor extends JPanel {
 
 		this.topPanel = new JPanel();
 		this.bottomPanel = new JPanel();
-				
-		this.textArea = new JTextArea();
+		
+		// text area creation
+		this.textArea = new JTextArea(18, 33);
         this.textArea.setEditable(true);
-		this.textArea.setLineWrap(true);
+        //this.textArea.setScrollable(true);
+		//this.textArea.setLineWrap(true);
         this.textScroll = new JScrollPane(this.textArea);
         this.textScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		this.textArea.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH-30, Editor.MAXIMUM_PANEL_HEIGHT-30));
 		this.topPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-280));
 		this.bottomPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-20));
 			
-		this.topPanel.setBackground(Color.ORANGE);
+		this.topPanel.setBackground(Color.PINK);
 		this.bottomPanel.setBackground(Color.GRAY);
 		
 		this.bottomPanel.add(this.textScroll);
 
-		this.add(topPanel, BorderLayout.NORTH);
-		this.add(bottomPanel, BorderLayout.SOUTH);
+		this.add(this.topPanel, BorderLayout.NORTH);
+		this.add(this.bottomPanel, BorderLayout.SOUTH);
 	}	
 
 	/****************
