@@ -8,8 +8,8 @@
 *                                                                                        *
 *  Authors: Cobolords                                                                    *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora															 *
-*	 Nicolo Jireh D. Unson																 *
+*    Kyle Matthew B. Reblora								 *
+*    Nicolo Jireh D. Unson								 *
 *                                                                                        *
 *  File Description:                                                                     *
 *  This file creates the editor panel for GUI.                                           *
@@ -41,6 +41,8 @@ public class Editor extends JPanel {
 	/***************
 	*  Attributes  *
 	***************/
+
+	// Panel Components
 	private JPanel topPanel;
 	private JPanel bottomPanel;
 	private JTextArea textArea;

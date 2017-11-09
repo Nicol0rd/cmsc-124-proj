@@ -8,8 +8,8 @@
 *                                                                                        *
 *  Authors: Cobolords                                                                    *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora															 *
-*	 Nicolo Jireh D. Unson																 *
+*    Kyle Matthew B. Reblora							 	 *
+*    Nicolo Jireh D. Unson								 *
 *                                                                                        *
 *  File Description:                                                                     *
 *  This file creates the interpreter panel for GUI.                                      *
@@ -88,8 +88,8 @@ public class Interpreter extends JPanel {
 		titlePanel.setPreferredSize(new Dimension(Interpreter.MAXIMUM_PANEL_WIDTH, Interpreter.MAXIMUM_PANEL_HEIGHT-280));
 		titlePanel.add(this.titlebar);	
 
-		this.bottomPanel.add(lexeme, BorderLayout.WEST);
-		this.bottomPanel.add(symboltable, BorderLayout.EAST);
+		this.bottomPanel.add(this.lexeme, BorderLayout.WEST);
+		this.bottomPanel.add(this.symboltable, BorderLayout.EAST);
 		this.topPanel.add(titlePanel, BorderLayout.CENTER);
 
 		this.add(topPanel, BorderLayout.NORTH);

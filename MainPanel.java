@@ -8,11 +8,11 @@
 *                                                                                        *
 *  Authors: Cobolords                                                                    *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora															 *
-*	 Nicolo Jireh D. Unson																 *
+*    Kyle Matthew B. Reblora								 *
+*    Nicolo Jireh D. Unson								 *
 *                                                                                        *
 *  File Description:                                                                     *
-*  This file creates the division panel for GUI.                                           *
+*  This file creates the division panel for GUI.                                         *
 *                                                                                        *
 *  (c) ALL RIGHTS RESERVED 2017                                                          *
 *                                                                                        *
@@ -25,7 +25,8 @@
 	import java.awt.Color;
 	import java.awt.Dimension;
 	import javax.swing.JPanel;
-	import gui.*;
+
+//	--------------------------------------------------	[FILE IMPORTS]
 
 //	--------------------------------------------------	[CLASS SPECIFICATION]
 public class MainPanel extends JPanel {
@@ -48,8 +49,6 @@ public class MainPanel extends JPanel {
 	// Panel - Dividers
 		private JPanel topPanel;
 		private JPanel bottomPanel;
-		private JPanel leftPanel;
-		private JPanel rightPanel;
 
 	/***************************
 	*    Panel Constructors    *
@@ -69,32 +68,24 @@ public class MainPanel extends JPanel {
 		this.interpreter = new Interpreter();
 		this.terminal = new Terminal();
 
-		this.topPanel = new JPanel(); this.bottomPanel = new JPanel();
-		this.leftPanel = new JPanel(); this.rightPanel = new JPanel();
+		this.topPanel = new JPanel();
+		this.bottomPanel = new JPanel();
 		
 		// set panel size - vertical
 		this.topPanel.setLayout(new BorderLayout());
 		this.topPanel.setPreferredSize(new Dimension(MainPanel.MAXIMUM_WINDOW_WIDTH, MainPanel.MAXIMUM_WINDOW_HEIGHT));
 		this.bottomPanel.setPreferredSize(new Dimension(MainPanel.MAXIMUM_WINDOW_WIDTH, MainPanel.MAXIMUM_WINDOW_HEIGHT));
-
-		// set panel size - horizontal		
-		this.leftPanel.setPreferredSize(new Dimension(Editor.getPanelWidth(), Editor.getPanelHeight()));
-		this.rightPanel.setPreferredSize(new Dimension(Interpreter.getPanelWidth(), Interpreter.getPanelHeight()));
 		
-		this.leftPanel.setBackground(Color.GRAY); 
-		this.rightPanel.setBackground(Color.GRAY);
+		// temporary: setting background colors
+		this.topPanel.setBackground(Color.GRAY);
 		this.bottomPanel.setBackground(Color.GRAY);
 
 		// set component position - top
-		this.leftPanel.add(this.editor);
-		this.rightPanel.add(this.interpreter);
-
-		// set component position - top
-		this.topPanel.add(this.leftPanel, BorderLayout.WEST);
-		this.topPanel.add(this.rightPanel, BorderLayout.EAST);
+		this.topPanel.add(this.editor, BorderLayout.WEST);
+		this.topPanel.add(this.interpreter, BorderLayout.EAST);
 
 		// set component position - bottom
-		this.bottomPanel.add(this.terminal);
+		this.bottomPanel.add(this.terminal, BorderLayout.CENTER);
 
 		// set component position - window
 		this.add(this.topPanel,BorderLayout.NORTH);
