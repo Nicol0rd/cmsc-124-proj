@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import src.Token;
 import src.Lexeme;
+import src.Analyzer;
 /*
 **************************************************************************************
 guide: http://cogitolearning.co.uk/2013/04/writing-a-parser-in-java-the-tokenizer/
@@ -51,40 +52,53 @@ public class Parser {
 
 	}
 
-	public void syntax_analyze(){
-		/***************************************************************
-		** 			checking if the code delimiters are complete		
-		****************************************************************/
-		Boolean flag = false;
-		int count = 0;
-		for(int i = 0; i < this.lexemes.size(); i++){
-			if(lexemes.get(i).getlextype().equals("Code Delimiter")){
-				for(int j = i+1; j < this.lexemes.size(); j++){
-					if(lexemes.get(j).getlextype().equals("Code Delimiter")){ 
-						flag = true;
-						count = j;
-					}
-				}
-				if(flag == true){
-					//check kung may mga statements pa after kthxbye
-					for(int k = count+1; k < this.lexemes.size(); k++){
-						if(!lexemes.get(k).getlextype().equals("Comments")){
-							System.out.println("Syntax error: --- One or multiple statements found after Code Delimiter");
-							System.exit(0);
-							break;
-						}
-					}
+	// public void syntax_analyze(){
+	// 	/***************************************************************
+	// 	** 			checking if the code delimiters are complete		
+	// 	****************************************************************/
+	// 	Boolean flag = false;
+	// 	int count = 0;
+	// 	for(int i = 0; i < this.lexemes.size(); i++){
+	// 		if(lexemes.get(i).getlextype().equals("Code Delimiter") && lexemes.get(i).lexToString().equals("HAI")){
+	// 			for(int j = i+1; j < this.lexemes.size(); j++){
+	// 				if(lexemes.get(j).getlextype().equals("Code Delimiter")){ 
+						
+	// 					//&& lexemes.get(j).lexToString().equals("KTHXBYE")
+	// 					if(lexemes.get(j).lexToString().equals("KTHXBYE")){
+	// 						//System.out.println(lexemes.get(j).lexToString());
+	// 						flag = true;
+	// 						count = j;	
+	// 					}else{
+	// 						System.out.println("Syntax error: --- invalid Code Delimiter");
+	// 						System.exit(0);
+	// 					}
+	// 				}
+	// 			}
+	// 			if(flag == true){
+	// 				//check kung may mga statements pa after kthxbye
+	// 				for(int k = count+1; k < this.lexemes.size(); k++){
+	// 					if(!lexemes.get(k).getlextype().equals("Comments")){
+	// 						System.out.println("Syntax error: --- One or multiple statements found after Code Delimiter");
+	// 						System.exit(0);
+	// 						break;
+	// 					}
+	// 				}
 
-				}else{ //kapag walang kthxbye or hai sa beginning ng file
-					System.out.println("Syntax error: --- Code Delimiter not found");
-					System.exit(0); //terminates the program pag nakakita ng syntax error
-				}
-			}
-		}
-		//******************************************************************
-		//******************************************************************
-		
-	}
+	// 			}else{ //kapag walang kthxbye or hai sa beginning ng file
+	// 				System.out.println("Syntax error: --- Code Delimiter not found");
+	// 				System.exit(0); //terminates the program pag nakakita ng syntax error
+	// 			}
+	// 		}else {
+	// 			System.out.println("Syntax error: --- Code Delimiter Missing");
+	// 				System.exit(0);
+	// 		}
+	// 	}
+	// 	//******************************************************************
+	// 	//******************************************************************
+	// 	if (flag == true){
+
+	// 	}	
+	// }
 
 
 	public ArrayList<Lexeme> getLexemes(){

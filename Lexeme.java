@@ -16,4 +16,8 @@ public class Lexeme{
 	public String getlextype(){
 		return this.lextype;
 	}
+
+	public String lexToString(){
+		return this.regex.toString();
+	}
 }
