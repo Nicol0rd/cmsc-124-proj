@@ -1,0 +1,6 @@
+BTW this is a comment
+HAI
+	I HAS A var ITZ 13
+	VISIBLE var BTW printing lang to ng var
+KTHXBYE
+VISIBLE hello world
