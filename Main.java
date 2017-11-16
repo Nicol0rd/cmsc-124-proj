@@ -1,4 +1,5 @@
 
+import java.io.*;
 import java.util.*;
 import src.Token;
 import src.Parser;
@@ -12,23 +13,40 @@ import src.Lexeme;
 
 public class Main {
 	public static void main(String args[]){
+		int line = 1; // count ng line
 		Parser parser = new Parser();
 
 		setRegex(parser);
 
+		FileReader fr = null;
+		BufferedReader br = null;
+		String str = null;
 		try{
-			System.out.println("Enter statement: ");
-			Scanner sc = new Scanner(System.in);
-     		String s = sc.nextLine();
-     		parser.lex(s);
+			fr = new FileReader("sample.lol");
+			br = new BufferedReader(fr);
+			String currentline = br.readLine();
 
-		}catch(Exception e){
+			while(currentline != null){
+     			parser.lex(currentline, line);
+     			line++;
+     			currentline = br.readLine();
+     		}
+
+     		fr.close();
+		 	br.close();
+
+		 	parser.syntax_analyze();
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 
 		for(Lexeme i : parser.getLexemes()){
 			System.out.println(i.getRegex() + "     " + i.getlextype());
 		}
+		
+		// for(Token i : parser.getTokens()){
+		// 	System.out.println(i.regex.toString() + "       " + i.type);
+		// }
 
 	}
 
@@ -36,21 +54,21 @@ public class Main {
 	public static void setRegex(Parser parser) {
 		parser.addRegex("HAI", "Code Delimiter");
 		parser.addRegex("KTHXBYE", "Code Delimiter");
+		parser.addRegex("-?[0-9]+\\.[0-9]+", "Numbar Literal");
 		parser.addRegex("-?[0-9]+", "Numbr Literal");
-		parser.addRegex("-?[0-9]+\\.?[0-9]+", "Numbar Literal");
 		parser.addRegex("\".+\"", "Yarn Literal");
 		parser.addRegex("(WIN|FAIL)", "Troof Literal");
 		parser.addRegex("(TROOF|NUMBR|NUMBAR|YARN|NOOB)", "Type Literal");
-		parser.addRegex("BTW", "Comments");
-		parser.addRegex("OBTW", "Comments");
-		parser.addRegex("TLDR", "Comments");
+		parser.addRegex("BTW\\s.+", "Comments");
+		parser.addRegex("OBTW\\s+.+\\s+TLDR", "Comments");
+		// parser.addRegex("TLDR", "Comments");
 		parser.addRegex("I\\sHAS\\sA", "Variable Declaration");
 		parser.addRegex("ITZ", "Variable Assignment");
 		parser.addRegex("R", "Assignment Operator");
 		parser.addRegex("SUM\\sOF", "Arithmetic Operator");
 		parser.addRegex("DIFF\\sOF", "Arithmetic Operator");
 		parser.addRegex("PRODUKT\\sOF", "Arithmetic Operator");
-		parser.addRegex("QUOSHUNT\\sOF", "Arithmetic Operator");
+		parser.addRegex("QUOSHUNT\\sOF","Arithmetic Operator");
 		parser.addRegex("MOD\\sOF", "Arithmetic Operator");
 		parser.addRegex("BIGGR\\sOF", "Arithmetic Operator");
 		parser.addRegex("SMALLR\\sOF", "Arithmetic Operator");
@@ -64,7 +82,6 @@ public class Main {
 		parser.addRegex("SMOOSH", "Concatenation");
 		parser.addRegex("MAEK", "Line Break");
 		parser.addRegex("AN", "Keyword");
-		parser.addRegex("A", "Keyword");
 		parser.addRegex("IS\\sNOW\\sA", "Line Break");
 		parser.addRegex("VISIBLE", "Output Keyword");
 		parser.addRegex("GIMMEH", "Input Keyword");
@@ -83,8 +100,8 @@ public class Main {
 		parser.addRegex("TIL", "Loop");
 		parser.addRegex("WILE", "Loop");
 		parser.addRegex("IM\\sOUTTA\\sYR", "Loop");
-		parser.addRegex("[a-zA-Z][a-zA-Z0-9_]*", "Variable Identifier");
-		parser.addRegex("[A-Z](\\s?[A_Z])*", "Function Identifier");
+		parser.addRegex("[a-zA-Z&&[^IR]][a-zA-Z0-9_]*", "Variable Identifier");
+		parser.addRegex("[a-zA-Z&&[^I]](\\s?[A_Z])*", "Function Identifier");
 
 
 	}

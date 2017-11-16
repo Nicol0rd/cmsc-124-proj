@@ -26,21 +26,66 @@ public class Parser {
 	}
 
 
-	public void lex(String str) {
+	public void lex(String str, int line) {
 		String s = str.trim();
-		lexemes.clear();
+		// lexemes.clear();
+		Boolean flag = false;
 		while(!s.equals("")){ //habang di pa siya nag eend
-			for(int i = 0; i < tokens.size(); i++){
-				Matcher m = tokens.get(i).regex.matcher(s);
+			for(Token i : tokens){
+				Matcher m = i.regex.matcher(s);
 				if(m.find()){
+					flag = true;
 					String asd = m.group().trim();
-					s = m.replaceFirst("").trim();
-					lexemes.add(new Lexeme(asd, tokens.get(i).type));
+          			s = m.replaceFirst("").trim();
+					lexemes.add(new Lexeme(asd, i.type));
 					break;
 				}
 			}
+			if(flag == false){
+				System.out.println("Syntax error: --- "+ "Line:" + line + ": " + s + ":" + "unknown syntax");
+				//this.syntax_analyze();
+				System.exit(0); //terminates the program pag nakakita ng syntax error
+			
+			}
 		}
+
 	}
+
+	public void syntax_analyze(){
+		/***************************************************************
+		** 			checking if the code delimiters are complete		
+		****************************************************************/
+		Boolean flag = false;
+		int count = 0;
+		for(int i = 0; i < this.lexemes.size(); i++){
+			if(lexemes.get(i).getlextype().equals("Code Delimiter")){
+				for(int j = i+1; j < this.lexemes.size(); j++){
+					if(lexemes.get(j).getlextype().equals("Code Delimiter")){ 
+						flag = true;
+						count = j;
+					}
+				}
+				if(flag == true){
+					//check kung may mga statements pa after kthxbye
+					for(int k = count+1; k < this.lexemes.size(); k++){
+						if(!lexemes.get(k).getlextype().equals("Comments")){
+							System.out.println("Syntax error: --- One or multiple statements found after Code Delimiter");
+							System.exit(0);
+							break;
+						}
+					}
+
+				}else{ //kapag walang kthxbye or hai sa beginning ng file
+					System.out.println("Syntax error: --- Code Delimiter not found");
+					System.exit(0); //terminates the program pag nakakita ng syntax error
+				}
+			}
+		}
+		//******************************************************************
+		//******************************************************************
+		
+	}
+
 
 	public ArrayList<Lexeme> getLexemes(){
 		return lexemes;

@@ -4,12 +4,12 @@
 *  Second Semester School Year 2016-2017                                                 *
 *                                                                                        *
 *  LOLCODE Interpreter                                                                   *
-*  Project Version 1.0 11/04/2017                                                        *
+*  Project Version 1.0 11/10/2017                                                        *
 *                                                                                        *
-*  Authors: Cobolords                                                                    *
+*  Authors: Ping Pong Pang                                                               *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora								 *
-*    Nicolo Jireh D. Unson								 *
+*    Kyle Matthew B. Reblora                                                             *
+*    Nicolo Jireh D. Unson                                                               *
 *                                                                                        *
 *  File Description:                                                                     *
 *  This file creates the division panel for GUI.                                         *

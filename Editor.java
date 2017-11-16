@@ -4,12 +4,12 @@
 *  Second Semester School Year 2016-2017                                                 *
 *                                                                                        *
 *  LOLCODE Interpreter                                                                   *
-*  Project Version 1.0 11/04/2017                                                        *
+*  Project Version 1.0 11/10/2017                                                        *
 *                                                                                        *
 *  Authors: Cobolords                                                                    *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora								 *
-*    Nicolo Jireh D. Unson								 *
+*    Kyle Matthew B. Reblora                                                             *
+*    Nicolo Jireh D. Unson                                                               *
 *                                                                                        *
 *  File Description:                                                                     *
 *  This file creates the editor panel for GUI.                                           *
@@ -27,7 +27,6 @@
 	import java.awt.Dimension;
 	import javax.swing.*;
 	import javax.swing.border.*;
-	import gui.*;
 
 //	--------------------------------------------------	[CLASS SPECIFICATION]
 public class Editor extends JPanel {
@@ -37,17 +36,24 @@ public class Editor extends JPanel {
 	**************/
 	private static final int MAXIMUM_PANEL_WIDTH = 400;
 	private static final int MAXIMUM_PANEL_HEIGHT = MainPanel.getPanelHeight();
+	private static final int TEXT_AREA_WIDTH = 17;
+	private static final int TEXT_AREA_HEIGHT = 33;
 
 	/***************
 	*  Attributes  *
 	***************/
 
 	// Panel Components
+	private JButton fileChooser;
+	private JTextArea fileName;
+	private JTextArea textArea;
+	private JScrollPane textScroll;
+
+	// Panel - Dividers	
 	private JPanel topPanel;
 	private JPanel bottomPanel;
-	private JTextArea textArea;
-	private JTextField textField;
-	private JScrollPane textScroll;
+	private JPanel rightPanel;
+	private JPanel leftPanel;
 
 	/***************************
 	*    Panel Constructors    *
@@ -60,29 +66,44 @@ public class Editor extends JPanel {
 	*    Methods    *
 	****************/
 	private void setComponents() {
+
+		// set panel size
 		this.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT));
 		this.setBackground(Color.GRAY);
 		this.setLayout(new BorderLayout());
 
+		// creating components
 		this.topPanel = new JPanel();
 		this.bottomPanel = new JPanel();
+		this.leftPanel = new JPanel();
+		this.rightPanel = new JPanel();
 		
-		// text area creation
-		this.textArea = new JTextArea(18, 33);
+		// top: creating the file choosing area
+		this.fileName = new JTextArea("demo.lol", 1, 29);
+		this.fileName.setEditable(false);
+		this.fileChooser = new JButton("File");
+
+		// bottom: creating text area with scrollbar
+		this.textArea = new JTextArea(Editor.TEXT_AREA_WIDTH, Editor.TEXT_AREA_HEIGHT);
         this.textArea.setEditable(true);
-        //this.textArea.setScrollable(true);
-		//this.textArea.setLineWrap(true);
         this.textScroll = new JScrollPane(this.textArea);
         this.textScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		this.topPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-280));
-		this.bottomPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-20));
-			
+		// modifying components size & color
+		this.topPanel.setLayout(new BorderLayout());
+		this.topPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-265));
+		this.bottomPanel.setPreferredSize(new Dimension(Editor.MAXIMUM_PANEL_WIDTH, Editor.MAXIMUM_PANEL_HEIGHT-35));
 		this.topPanel.setBackground(Color.PINK);
 		this.bottomPanel.setBackground(Color.GRAY);
 		
-		this.bottomPanel.add(this.textScroll);
+		// set components - top panel
+		this.leftPanel.add(this.fileName, BorderLayout.CENTER);
+		this.rightPanel.add(this.fileChooser, BorderLayout.CENTER);
+		this.topPanel.add(this.leftPanel, BorderLayout.CENTER);
+		this.topPanel.add(this.rightPanel, BorderLayout.EAST);
 
+		// set components position - editor
+		this.bottomPanel.add(this.textScroll, BorderLayout.CENTER);
 		this.add(this.topPanel, BorderLayout.NORTH);
 		this.add(this.bottomPanel, BorderLayout.SOUTH);
 	}	

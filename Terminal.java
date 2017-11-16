@@ -8,8 +8,8 @@
 *                                                                                        *
 *  Authors: Cobolords                                                                    *
 *    Andric Quinn S. Baticos                                                             *
-*    Kyle Matthew B. Reblora															 *
-*	 Nicolo Jireh D. Unson																 *
+*    Kyle Matthew B. Reblora                                                             *
+*	 Nicolo Jireh D. Unson                                                               *
 *                                                                                        *
 *  File Description:                                                                     *
 *  This file creates the terminal panel for GUI.                                         *
@@ -27,7 +27,6 @@
 	import java.awt.Dimension;
 	import javax.swing.JButton;	
 	import javax.swing.JPanel;
-	import gui.*;
 
 //	--------------------------------------------------	[CLASS SPECIFICATION]
 public class Terminal extends JPanel {
@@ -49,8 +48,6 @@ public class Terminal extends JPanel {
 	*    Panel Constructors    *
 	***************************/
 	public Terminal() {
-		
-		super();
 		this.setLayout(new BorderLayout());
 		this.setComponents();
 	}
@@ -70,7 +67,7 @@ public class Terminal extends JPanel {
 		buttonPanel.setBackground(Color.GRAY);
 
 		this.textPanel = new JPanel();
-		this.textPanel.setBackground(Color.WHITE);
+		this.textPanel.setBackground(Color.BLACK);
 
 		this.executeButton.setPreferredSize(new Dimension(Terminal.getPanelWidth(),Terminal.getPanelHeight()-280));
 		buttonPanel.setPreferredSize(new Dimension(Terminal.getPanelWidth(),Terminal.getPanelHeight()-280));
